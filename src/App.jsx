@@ -1,8 +1,13 @@
 import React from 'react'
+import {PrimeReactProvider} from 'primereact/api'
+import MySidebar from './components/Sidebar'
+
 
 const App = () => {
   return (
-    <div>App</div>
+    <PrimeReactProvider >
+      <MySidebar/>
+    </PrimeReactProvider>
   )
 }
 
