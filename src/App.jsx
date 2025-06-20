@@ -1,14 +1,14 @@
 import React from 'react'
 import { PrimeReactProvider } from 'primereact/api'
-import MySidebar from './components/Sidebar'
 import { MainLayoutProvider } from './layouts/MainLayout'
+import HomePage from './pages/HomePage'
 
 
 const App = () => {
   return (
     <PrimeReactProvider >
       <MainLayoutProvider>
-        <MySidebar />
+        <HomePage/>
       </MainLayoutProvider>
     </PrimeReactProvider>
   )
