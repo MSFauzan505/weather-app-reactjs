@@ -13,10 +13,10 @@ export const MainLayoutProvider = () => {
 
     return (
         <MainLayoutContext.Provider value={{ sidebarVisible, toggleSidebar }}>
-            <div className='bg-[url("./assets/background.jpg")]  bg-cover bg-center min-h-screen'>
-                <div className='relative flex flex-col md:flex-row bg-white/20 backdrop-blur-xl min-h-screen'>
+            <div className='bg-[url("./assets/background.jpg")]  bg-cover bg-center min-h-screen w-full'>
+                <div className='relative flex flex-col sm:flex-row bg-white/20 backdrop-blur-xl min-h-screen'>
                     <Sidebar />
-                    <div className='bg-white w-full p-2 m-5'>
+                    <div className='mt-2 sm:m-0 w-full p-4 sm:p-3'>
                         {<Outlet/>}
                     </div>
                 </div>
