@@ -1,15 +1,12 @@
 import React from 'react'
 import { PrimeReactProvider } from 'primereact/api'
-import { MainLayoutProvider } from './layouts/MainLayout'
-import HomePage from './pages/HomePage'
+import AppRoutes from './routes/appRoutes'
 
 
 const App = () => {
   return (
     <PrimeReactProvider >
-      <MainLayoutProvider>
-        <HomePage/>
-      </MainLayoutProvider>
+        <AppRoutes/>
     </PrimeReactProvider>
   )
 }
