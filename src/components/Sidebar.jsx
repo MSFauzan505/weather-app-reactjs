@@ -13,8 +13,8 @@ const navItems = [
 
 const SidebarContent = ({ onLinkClick }) => {
   return (
-    <div className='flex flex-col items-center justify-between py-3 text-white gap-4 sm:gap-6 md:gap-8 h-screen w-[80px] sm:w-[100px]
-     bg-black/20 backdrop-blur-xl'>
+    <div className='absolute flex z-50 flex-col items-center justify-between py-3 text-white gap-4 sm:gap-6 md:gap-8 h-screen w-[80px] sm:w-[100px]
+     bg-black/40 backdrop-blur-xl'>
       <div className='flex flex-col gap-6 md:gap-8 items-center'>
         <i className='pi pi-cloud py-5 text-4xl sm:text-5xl'></i>
         {navItems.map((item, index) => (
@@ -52,15 +52,15 @@ const Sidebar = () => {
             animate={{ x: 0 }}
             exit={{ x: '-100%' }}
             transition={{ duration: 0.3 }}
-            className='flex sm:hidden absolute top-0 left-0 z-50'>
+            className='flex sm:hidden sticky  top-0 left-0 z-50'>
             <SidebarContent onLinkClick={toggleSidebar} />
           </motion.div>
         )}
       </AnimatePresence>
 
       <AnimatePresence>
-        <div className='flex sm:hidden justify-between items-center p-3'>
-          <h1 className='font-bold text-lg text-white p-1'>Weather App</h1>
+        <div className={`flex z-50 top-0 sticky  sm:hidden ${sidebarVisible ? 'justify-end' : 'justify-between'} items-center p-3`}>
+          <h1 className={`font-bold text-lg text-white p-1 ${sidebarVisible ? 'hidden' : ''}`}>Weather App</h1>
           <motion.i
             whileHover={{scale: 1.1}}
             whileTap={{scale: 0.9}}

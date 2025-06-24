@@ -16,16 +16,16 @@ const weatherInfo = [
 const HomePage = () => {
     const [weatherData, setWeatherData] = useState(null)
 
-    const handleLocationSelected = async ({lat, lon})=>{
-        const data = await fetchWeather(lat,lon)
+    const handleLocationSelected = async ({ lat, lon }) => {
+        const data = await fetchWeather(lat, lon)
         setWeatherData(data)
     }
     console.log(weatherData)
-    
+
     return (
         <div className='flex flex-col sm:flex-row gap-5'>
             {/* current weather */}
-            <div className='flex flex-col justify-between min-h-[400px] max-w-[400px] bg-black/20 rounded-xl text-white p-5'>
+            <div className='flex flex-col justify-between min-h-[400px]  bg-black/20 rounded-xl text-white p-5'>
                 <div className='flex flex-col'>
                     <h1 className='font-semibold sm:text-lg md:text-xl'>Current Weather</h1>
                     <span className='text-sm sm:text-lg text-gray-300'>6.25pm</span>
@@ -48,10 +48,14 @@ const HomePage = () => {
             </div>
 
             {/* weather map */}
-            <div className='w-full  h-[400px]'>
-                <WeatherMap onLocationSelected={handleLocationSelected}/>
+            <div className='w-full z-0 h-[400px]'>
+                <WeatherMap onLocationSelected={handleLocationSelected} />
             </div>
 
+            {/* popular city */}
+            <div className='bg-black w-full h-[400px]'>
+
+            </div>
         </div>
     )
 }
