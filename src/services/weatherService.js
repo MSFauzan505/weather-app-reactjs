@@ -1,9 +1,7 @@
-export const getWeather = async () => {
-  const apiKey = "e4d7fbf644d848b198724015252006";
-  const city = 'jakarta'
-  const url = `http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}`;
+export const fetchWeather =  async (lat ,lon)=>{
+  const apiKey = 'bef8972b18afa5f3494939ef92112410'
+  const res = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`)
+  const data = await res.json()
 
-  const res = await fetch(url);
-  const data = await res.json();
-  return data;
-};
+  return data
+}
