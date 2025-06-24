@@ -1,6 +1,8 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import { useMainLayout } from '../layouts/MainLayout'
+// eslint-disable-next-line no-unused-vars
+import { AnimatePresence, motion } from 'motion/react'
 
 const navItems = [
   { to: '/', icon: 'pi pi-home' },
@@ -20,6 +22,7 @@ const SidebarContent = ({ onLinkClick }) => {
             key={index}
             to={item.to}
             onClick={() => onLinkClick && onLinkClick()}
+            className={({isActive}) => isActive ? 'bg-black/20 backdrop-blur-lg rounded-lg transition-all' : ''}
           >
             <i
               className={`${item.icon} transition-all hover:bg-black/10 hover:backdrop-blur-xl cursor-pointer rounded-xl p-2 text-xl sm:text-3xl`}
@@ -37,24 +40,35 @@ const Sidebar = () => {
 
   return (
     <>
-   
+
       <div className='hidden sm:flex  top-0 left-0 z-50 sm:z-0 '>
         <SidebarContent />
       </div>
 
-      {sidebarVisible && (
-        <div className='flex sm:hidden absolute top-0 left-0 z-50'>
-          <SidebarContent onLinkClick={toggleSidebar} />
-        </div>
-      )}
+      <AnimatePresence>
+        {sidebarVisible && (
+          <motion.div
+            initial={{ x: '-100%' }}
+            animate={{ x: 0 }}
+            exit={{ x: '-100%' }}
+            transition={{ duration: 0.3 }}
+            className='flex sm:hidden absolute top-0 left-0 z-50'>
+            <SidebarContent onLinkClick={toggleSidebar} />
+          </motion.div>
+        )}
+      </AnimatePresence>
 
-      <div className='flex sm:hidden justify-between items-center p-3'>
-        <h1 className='font-bold text-lg text-white p-1'>Weather App</h1>
-        <i
-          className={`pi pi-align-right text-3xl text-white p-1 rounded-lg ${sidebarVisible ? 'bg-black/10' : ''}`}
-          onClick={toggleSidebar}
-        ></i>
-      </div>
+      <AnimatePresence>
+        <div className='flex sm:hidden justify-between items-center p-3'>
+          <h1 className='font-bold text-lg text-white p-1'>Weather App</h1>
+          <motion.i
+            whileHover={{scale: 1.1}}
+            whileTap={{scale: 0.9}}
+            className={`pi pi-align-right text-3xl text-white p-1 rounded-lg ${sidebarVisible ? 'bg-black/10' : ''}`}
+            onClick={toggleSidebar}
+          ></motion.i>
+        </div>
+      </AnimatePresence>
     </>
   )
 }
