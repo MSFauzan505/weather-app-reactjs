@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { LuWaves } from "react-icons/lu";
 import { IoWaterOutline } from "react-icons/io5";
 import { BiWind } from "react-icons/bi";
 import { WiDaySunny } from "react-icons/wi";
+import WeatherMap from '../components/WeatherMap';
+import { fetchWeather } from '../services/weatherService';
 
 const weatherInfo = [
     { icon: <LuWaves />, info: '173' },
@@ -12,8 +14,16 @@ const weatherInfo = [
 ]
 
 const HomePage = () => {
+    const [weatherData, setWeatherData] = useState(null)
+
+    const handleLocationSelected = async ({lat, lon})=>{
+        const data = await fetchWeather(lat,lon)
+        setWeatherData(data)
+    }
+    console.log(weatherData)
+    
     return (
-        <div className='flex flex-col gap-5'>
+        <div className='flex flex-col sm:flex-row gap-5'>
             {/* current weather */}
             <div className='flex flex-col justify-between min-h-[400px] max-w-[400px] bg-black/20 rounded-xl text-white p-5'>
                 <div className='flex flex-col'>
@@ -37,6 +47,10 @@ const HomePage = () => {
                 </div>
             </div>
 
+            {/* weather map */}
+            <div className='w-full  h-[400px]'>
+                <WeatherMap onLocationSelected={handleLocationSelected}/>
+            </div>
 
         </div>
     )
