@@ -4,7 +4,7 @@ import { IoWaterOutline } from "react-icons/io5";
 import { BiWind } from "react-icons/bi";
 import { WiDaySunny } from "react-icons/wi";
 import WeatherMap from '../components/WeatherMap';
-import { fetchWeather } from '../services/weatherService';
+import { fetchCurrentWeather, fetchForecast } from '../services/weatherService';
 import { CiCloudDrizzle } from "react-icons/ci";
 
 
@@ -27,13 +27,17 @@ const popularCities = [
 ];
 
 const HomePage = () => {
-    const [weatherData, setWeatherData] = useState(null)
+    const [currentWeather, setCurrentWeather] = useState(null)
+    const [forecastWeather, setForecastWeather] = useState(null)
 
     const handleLocationSelected = async ({ lat, lon }) => {
-        const data = await fetchWeather(lat, lon)
-        setWeatherData(data)
+        const currentData = await fetchCurrentWeather(lat, lon)
+        const forecastData = await fetchForecast(lat,lon)
+        setCurrentWeather(currentData)
+        setForecastWeather(forecastData)
     }
-    console.log(weatherData)
+    console.log('ini data forecastWeather',forecastWeather)
+    console.log('ini data currnet',currentWeather)
 
     return (
         <div className='flex flex-col sm:flex-row flex-wrap lg:flex-nowrap gap-5'>
