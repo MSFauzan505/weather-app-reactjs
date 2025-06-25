@@ -26,68 +26,106 @@ const popularCities = [
     { name: "London", lat: 51.5074, lon: -0.1278 },
 ];
 
+const mockForecast = [
+  { dt_txt: "2025-06-26 06:00:00", main: { temp: 24.0 } },
+  { dt_txt: "2025-06-26 09:00:00", main: { temp: 25.1 } },
+  { dt_txt: "2025-06-26 12:00:00", main: { temp: 24.3 } },
+  { dt_txt: "2025-06-26 15:00:00", main: { temp: 25.0 } },
+  { dt_txt: "2025-06-26 18:00:00", main: { temp: 24.5 } },
+  { dt_txt: "2025-06-26 21:00:00", main: { temp: 25.2 } },
+  { dt_txt: "2025-06-27 00:00:00", main: { temp: 24.6 } },
+  { dt_txt: "2025-06-27 03:00:00", main: { temp: 25.3 } }
+];
+
+
 const HomePage = () => {
     const [currentWeather, setCurrentWeather] = useState(null)
     const [forecastWeather, setForecastWeather] = useState(null)
 
     const handleLocationSelected = async ({ lat, lon }) => {
         const currentData = await fetchCurrentWeather(lat, lon)
-        const forecastData = await fetchForecast(lat,lon)
+        const forecastData = await fetchForecast(lat, lon)
         setCurrentWeather(currentData)
         setForecastWeather(forecastData)
     }
-    console.log('ini data forecastWeather',forecastWeather)
-    console.log('ini data currnet',currentWeather)
+    console.log('ini data forecastWeather', forecastWeather)
+    console.log('ini data currnet', currentWeather)
 
     return (
-        <div className='flex flex-col sm:flex-row flex-wrap lg:flex-nowrap gap-5'>
-            {/* current weather */}
-            <div className='flex flex-col w-full lg:min-w-[400px] lg:flex-1 justify-between min-h-[400px]  bg-black/20 rounded-xl text-white p-5'>
-                <div className='flex flex-col'>
-                    <h1 className='font-semibold sm:text-lg md:text-xl'>Current Weather</h1>
-                    <span className='text-sm sm:text-lg text-gray-300'>6.25pm</span>
-                </div>
-                <div className='flex items-center justify-center gap-4 my-8  '>
-                    <img src='/src/assets/icon-cerah.png' className='h-36 w-36 sm:max-h-40 sm:max-w-40 bg-contain ' />
-                    <div className=' flex flex-col items-center'>
-                        <span className='text-7xl font-bold'>24°</span>
-                        <span className=''>Heavy Rain</span>
+        <div className='flex flex-col gap-5'>
+            <div className='flex flex-col sm:flex-row flex-wrap lg:flex-nowrap gap-5'>
+                {/* current weather */}
+                <div className='flex flex-col w-full lg:min-w-[400px] lg:flex-1 justify-between min-h-[400px]  
+                bg-black/20 backdrop-blur-2xl rounded-xl text-white p-5'>
+                    <div className='flex flex-col'>
+                        <h1 className='font-semibold sm:text-lg md:text-xl'>Current Weather</h1>
+                        <span className='text-sm sm:text-lg text-gray-300'>6.25pm</span>
+                    </div>
+                    <div className='flex items-center justify-center gap-4 my-8  '>
+                        <img src='/src/assets/icon-cerah.png' className='h-36 w-36 sm:max-h-40 sm:max-w-40 bg-contain ' />
+                        <div className=' flex flex-col items-center'>
+                            <span className='text-7xl font-bold'>24°C</span>
+                            <span className=''>Heavy Rain</span>
+                        </div>
+                    </div>
+                    <div className='flex justify-between items-center gap-5 '>
+                        {weatherInfo.map((weather, i) => (
+                            <div key={i} className='flex flex-col justify-center items-center gap-1'>
+                                <div className='text-3xl'>{weather.icon}</div>
+                                <span>{weather.info}</span>
+                            </div>
+                        ))}
                     </div>
                 </div>
-                <div className='flex justify-between items-center gap-5 '>
-                    {weatherInfo.map((weather, i) => (
-                        <div key={i} className='flex flex-col justify-center items-center gap-1'>
-                            <div className='text-3xl'>{weather.icon}</div>
-                            <span>{weather.info}</span>
-                        </div>
-                    ))}
+
+                {/* weather map */}
+                <div className='w-full lg:max-w-[400px] lg:flex-1 z-0 h-[400px]'>
+                    <WeatherMap onLocationSelected={handleLocationSelected} />
+                </div>
+
+                {/* popular city */}
+                <div className='flex flex-col w-full lg:max-w-[400px] lg:flex-1 text-white h-[400px] bg-black/20 backdrop-blur-2xl rounded-xl p-5'>
+                    <div className='flex justify-between mb-5'>
+                        <h1 className='font-semibold sm:text-lg md:text-xl'>Popular City</h1>
+                        <a href='' className='underline'>View more</a>
+                    </div>
+
+                    <div className='flex flex-col gap-4 mt-2 scrollbar-hide  overflow-y-scroll'>
+
+                        {popularCities.map((city, i) => (
+                            <span key={i} className='flex justify-between px-3'>
+                                <div className='flex gap-2 justify-center items-center'>
+                                    <CiCloudDrizzle className='text-4xl sm:text-5xl' />
+                                    <p className='text-sm'>{city.name}</p>
+                                </div>
+                                <p className='text-sm flex items-center justify-center'>Cloudy</p>
+                            </span>
+                        ))}
+
+                    </div>
                 </div>
             </div>
 
-            {/* weather map */}
-            <div className='w-full lg:max-w-[400px] lg:flex-1 z-0 h-[400px]'>
-                <WeatherMap onLocationSelected={handleLocationSelected} />
-            </div>
+            <div className='flex '>
+                {/* forecash */}
+                <div className='flex flex-col w-full lg:max-w-[400px] lg:flex-1 text-white h-[400px] bg-black/20 backdrop-blur-2xl rounded-xl p-5'>
+                    <div className='flex justify-between mb-5'>
+                        <h1 className='font-semibold sm:text-lg md:text-xl'>Forecast Today</h1>
+                        <a>2025-06-27</a>
+                    </div>
 
-            {/* popular city */}
-            <div className='flex flex-col w-full lg:max-w-[400px] lg:flex-1 text-white h-[400px] bg-black/20 backdrop-blur-2xl rounded-xl p-5'>
-                <div className='flex justify-between mb-5'>
-                    <h1 className='font-semibold sm:text-lg md:text-xl'>Popular City</h1>
-                    <a href='#' className='underline'>View more</a>
-                </div>
+                    <div className='flex flex-col gap-4 mt-2 scrollbar-hide  overflow-y-scroll'>
+                        {mockForecast.map((item, i) => (
+                            <span key={i} className='flex justify-between px-3'>
+                                <div className='flex gap-2 justify-center items-center'>
+                                    <CiCloudDrizzle className='text-4xl sm:text-5xl' />
+                                    <p className='text-sm'>{item.main.temp}°C</p>
+                                </div>
+                                <p className='text-sm flex items-center justify-center'>{item.dt_txt.split(" ")[1].slice(0,5)} WIB</p>
+                            </span>
+                        ))}
 
-                <div className='flex flex-col gap-4 mt-2 scrollbar-hide  overflow-y-scroll'>
-
-                    {popularCities.map((city, i) => (
-                        <span key={i} className='flex justify-between px-3'>
-                            <div className='flex gap-2 justify-center items-center'>
-                                <CiCloudDrizzle className='text-4xl sm:text-5xl' />
-                                <p className='text-sm'>{city.name}</p>
-                            </div>
-                            <p className='text-sm flex items-center justify-center'>Cloudy</p>
-                        </span>
-                    ))}
-
+                    </div>
                 </div>
             </div>
         </div>
