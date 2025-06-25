@@ -41,7 +41,7 @@ const Sidebar = () => {
   return (
     <>
 
-      <div className='hidden sm:flex mr-25 top-0 left-0 z-50 sm:z-0 '>
+      <div className='hidden sticky h-screen sm:flex mr-25 top-0 left-0 z-50 sm:z-0 '>
         <SidebarContent />
       </div>
 
@@ -52,7 +52,7 @@ const Sidebar = () => {
             animate={{ x: 0 }}
             exit={{ x: '-100%' }}
             transition={{ duration: 0.3 }}
-            className='flex sm:hidden sticky top-0 left-0 z-50'>
+            className='flex  sticky top-0 left-0 z-50'>
             <SidebarContent onLinkClick={toggleSidebar} />
           </motion.div>
         )}
