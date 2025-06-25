@@ -5,6 +5,8 @@ import { BiWind } from "react-icons/bi";
 import { WiDaySunny } from "react-icons/wi";
 import WeatherMap from '../components/WeatherMap';
 import { fetchWeather } from '../services/weatherService';
+import { CiCloudDrizzle } from "react-icons/ci";
+
 
 const weatherInfo = [
     { icon: <LuWaves />, info: '173' },
@@ -12,6 +14,17 @@ const weatherInfo = [
     { icon: <BiWind />, info: '6km/h' },
     { icon: <WiDaySunny />, info: '3' }
 ]
+
+const popularCities = [
+    { name: "Jakarta", lat: -6.2000, lon: 106.8167 },
+    { name: "Bandung", lat: -6.9147, lon: 107.6098 },
+    { name: "Surabaya", lat: -7.2504, lon: 112.7688 },
+    { name: "Tokyo", lat: 35.6895, lon: 139.6917 },
+    { name: "Seoul", lat: 37.5665, lon: 126.9780 },
+    { name: "New York City", lat: 40.7128, lon: -74.0060 },
+    { name: "Los Angeles", lat: 34.0522, lon: -118.2437 },
+    { name: "London", lat: 51.5074, lon: -0.1278 },
+];
 
 const HomePage = () => {
     const [weatherData, setWeatherData] = useState(null)
@@ -23,9 +36,9 @@ const HomePage = () => {
     console.log(weatherData)
 
     return (
-        <div className='flex flex-col sm:flex-row gap-5'>
+        <div className='flex flex-col sm:flex-row flex-wrap lg:flex-nowrap gap-5'>
             {/* current weather */}
-            <div className='flex flex-col justify-between min-h-[400px]  bg-black/20 rounded-xl text-white p-5'>
+            <div className='flex flex-col w-full lg:min-w-[400px] lg:flex-1 justify-between min-h-[400px]  bg-black/20 rounded-xl text-white p-5'>
                 <div className='flex flex-col'>
                     <h1 className='font-semibold sm:text-lg md:text-xl'>Current Weather</h1>
                     <span className='text-sm sm:text-lg text-gray-300'>6.25pm</span>
@@ -48,13 +61,30 @@ const HomePage = () => {
             </div>
 
             {/* weather map */}
-            <div className='w-full z-0 h-[400px]'>
+            <div className='w-full lg:max-w-[400px] lg:flex-1 z-0 h-[400px]'>
                 <WeatherMap onLocationSelected={handleLocationSelected} />
             </div>
 
             {/* popular city */}
-            <div className='bg-black w-full h-[400px]'>
+            <div className='flex flex-col w-full lg:max-w-[400px] lg:flex-1 text-white h-[400px] bg-black/20 backdrop-blur-2xl rounded-xl p-5'>
+                <div className='flex justify-between mb-5'>
+                    <h1 className='font-semibold sm:text-lg md:text-xl'>Popular City</h1>
+                    <a href='#' className='underline'>View more</a>
+                </div>
 
+                <div className='flex flex-col gap-4 mt-2 scrollbar-hide  overflow-y-scroll'>
+
+                    {popularCities.map((city, i) => (
+                        <span key={i} className='flex justify-between px-3'>
+                            <div className='flex gap-2 justify-center items-center'>
+                                <CiCloudDrizzle className='text-4xl sm:text-5xl' />
+                                <p className='text-sm'>{city.name}</p>
+                            </div>
+                            <p className='text-sm flex items-center justify-center'>Cloudy</p>
+                        </span>
+                    ))}
+
+                </div>
             </div>
         </div>
     )
