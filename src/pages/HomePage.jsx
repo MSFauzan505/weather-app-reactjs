@@ -6,6 +6,7 @@ import { WiDaySunny } from "react-icons/wi";
 import WeatherMap from '../components/WeatherMap';
 import { fetchCurrentWeather, fetchForecast } from '../services/weatherService';
 import { CiCloudDrizzle } from "react-icons/ci";
+import ForecastChart from '../components/ForecastChart';
 
 
 const weatherInfo = [
@@ -42,6 +43,7 @@ const HomePage = () => {
     const [currentWeather, setCurrentWeather] = useState(null)
     const [forecastWeather, setForecastWeather] = useState(null)
 
+    // handle location selected get coordinate
     const handleLocationSelected = async ({ lat, lon }) => {
         const currentData = await fetchCurrentWeather(lat, lon)
         const forecastData = await fetchForecast(lat, lon)
@@ -50,6 +52,12 @@ const HomePage = () => {
     }
     console.log('ini data forecastWeather', forecastWeather)
     console.log('ini data currnet', currentWeather)
+    
+    // Chart format
+    const chartData = mockForecast.map(item=> ({
+        time: item.dt_txt.split(" ")[1].slice(0, 5),
+        temp: item.main.temp
+    }))
 
     return (
         <div className='flex flex-col gap-5'>
@@ -62,9 +70,9 @@ const HomePage = () => {
                         <span className='text-sm sm:text-lg text-gray-300'>6.25pm</span>
                     </div>
                     <div className='flex items-center justify-center gap-4 my-8  '>
-                        <img src='/src/assets/icon-cerah.png' className='h-36 w-36 sm:max-h-40 sm:max-w-40 bg-contain ' />
+                        <img src='/src/assets/icon-cerah.png' className='h-28 w-28 sm:h-36 sm:w-36 sm:max-h-40 sm:max-w-40 bg-contain ' />
                         <div className=' flex flex-col items-center'>
-                            <span className='text-7xl font-bold'>24°C</span>
+                            <span className='text-5xl sm:text-7xl font-bold'>24°C</span>
                             <span className=''>Heavy Rain</span>
                         </div>
                     </div>
@@ -106,9 +114,9 @@ const HomePage = () => {
                 </div>
             </div>
 
-            <div className='flex '>
+            <div className='flex flex-col sm:flex-row flex-wrap lg:flex-nowrap gap-5'>
                 {/* forecash */}
-                <div className='flex flex-col w-full lg:max-w-[400px] lg:flex-1 text-white h-[400px] bg-black/20 backdrop-blur-2xl rounded-xl p-5'>
+                <div className='flex flex-col w-full lg:min-w-[400px] lg:flex-1 text-white h-[400px] bg-black/20 backdrop-blur-2xl rounded-xl p-5'>
                     <div className='flex justify-between mb-5'>
                         <h1 className='font-semibold sm:text-lg md:text-xl'>Forecast Today</h1>
                         <a>2025-06-27</a>
@@ -126,6 +134,11 @@ const HomePage = () => {
                         ))}
 
                     </div>
+                </div>
+
+                {/* chart */}
+                <div className=' h-[400px] sm:w-full bg-black/20 backdrop-blur-2xl rounded-xl p-2'>
+                    <ForecastChart data={chartData}/>
                 </div>
             </div>
         </div>
