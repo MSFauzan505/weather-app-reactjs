@@ -83,7 +83,7 @@ const HomePage = () => {
                         <span className='text-sm sm:text-lg text-gray-300'>6.25pm</span>
                     </div>
                     <div className='flex items-center justify-center gap-4 my-8  '>
-                        <img src='/src/assets/icon-cerah.png' className='h-28 w-28 sm:h-36 sm:w-36 sm:max-h-40 sm:max-w-40 bg-contain ' />
+                        <img src='/icon-cerah.png' className='h-28 w-28 sm:h-36 sm:w-36 sm:max-h-40 sm:max-w-40 bg-contain ' />
                         <div className=' flex flex-col items-center'>
                             <span className='text-5xl sm:text-7xl font-bold'>24°C</span>
                             <span className=''>Heavy Rain</span>
