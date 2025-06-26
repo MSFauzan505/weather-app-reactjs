@@ -15,14 +15,14 @@ export const MainLayoutProvider = () => {
 
     return (
         <MainLayoutContext.Provider value={{ sidebarVisible, toggleSidebar }}>
-            <div className='bg-[url("./assets/background.jpg")]  bg-cover bg-center min-h-screen w-full'>
+            <div className='bg-[url("/background.jpg")] bg-cover bg-center min-h-screen w-full'>
                 <div className='relative flex flex-col sm:flex-row bg-white/20 backdrop-blur-xl min-h-screen'>
                     <Sidebar />
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         animate={{opacity: 1, y: 0}}
                         transition={{duration: 0.5, ease: 'easeOut'}}
-                        className='mt-2 sm:m-0 w-full p-4 sm:p-3'>
+                        className=' sm:mt-2 sm:m-0 w-full p-4 sm:p-3'>
                         {<Outlet />}
                     </motion.div>
                 </div>
