@@ -8,7 +8,7 @@ import NotFoundPage from '../pages/NotFoundPage'
 import SearchPage from '../pages/SearchPage'
 import { MainLayoutProvider } from '../layouts/MainLayout'
 
-const AppRoutes = () => {
+const appRoutes = () => {
     return (
         <BrowserRouter>
             <Routes>
@@ -27,4 +27,4 @@ const AppRoutes = () => {
     )
 }
 
-export default AppRoutes
+export default appRoutes
