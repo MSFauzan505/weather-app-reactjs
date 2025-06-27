@@ -32,9 +32,9 @@ const SearchPage = () => {
           <h1 className='text-xl md:text-2xl'>Cloudy</h1>
         </div>
         
-        <div className='flex  justify-between bg-black'>
-          <span className='text-sm py-4 px-6 bg-blue-500'>Temp: 24°C</span>
-          <span className='text-sm py-4 px-6 bg-blue-500'>Humidity: 78</span>
+        <div className='flex  justify-between'>
+          <span className='text-sm py-4 px-6 '>Temp: 24°C</span>
+          <span className='text-sm py-4 px-6 '>Humidity: 78</span>
         </div>
       </div>
     </div>
