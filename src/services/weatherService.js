@@ -13,3 +13,10 @@ export const fetchForecast = async (lat, lon)=> {
 
   return data
 }
+
+export const fetchCityWeather = async (cityName)=>{
+  const res = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=metric`)
+  const data = await res.json()
+
+  return data
+}

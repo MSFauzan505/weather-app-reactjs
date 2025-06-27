@@ -1,10 +1,10 @@
-import React, { createContext, useContext, useState } from 'react'
+import React, { createContext, useState } from 'react'
 import Sidebar from '../components/Sidebar'
 import { Outlet } from 'react-router-dom'
 // eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion'
 
-const MainLayoutContext = createContext()
+export const MainLayoutContext = createContext()
 
 export const MainLayoutProvider = () => {
     const [sidebarVisible, setSidebarVisible] = useState(false)
@@ -20,9 +20,13 @@ export const MainLayoutProvider = () => {
                     <Sidebar />
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
-                        animate={{opacity: 1, y: 0}}
-                        transition={{duration: 0.5, ease: 'easeOut'}}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5, ease: 'easeOut' }}
                         className=' sm:mt-2 sm:m-0 w-full p-4 sm:p-3'>
+                        <div className='my-2 sm:my-5 flex justify-end gap-5'>
+                            <a href='https://github.com/MSFauzan505' target='_black' className='text-white hover:text-gray-100 hover:underline'>Github</a>
+                            <a href='https://openweathermap.org' target='_black' className='text-white hover:text-gray-100 hover:underline'>Weather API</a>
+                        </div>
                         {<Outlet />}
                     </motion.div>
                 </div>
@@ -31,5 +35,3 @@ export const MainLayoutProvider = () => {
     )
 }
 
-// eslint-disable-next-line react-refresh/only-export-components
-export const useMainLayout = () => useContext(MainLayoutContext)

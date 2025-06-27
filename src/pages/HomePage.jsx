@@ -69,10 +69,7 @@ const HomePage = () => {
 
     return (
         <div className='flex flex-col gap-5'>
-            <div className='w-full flex justify-end gap-5'>
-                <a href='https://github.com/MSFauzan505' target='_black'  className='text-white hover:text-gray-100 hover:underline'>Github</a>
-                <a href='https://openweathermap.org' target='_black' className='text-white hover:text-gray-100 hover:underline'>Weather API</a>
-            </div>
+            
 
             <div className='flex flex-col sm:flex-row flex-wrap lg:flex-nowrap gap-2 sm:gap-5'>
                 {/* current weather */}

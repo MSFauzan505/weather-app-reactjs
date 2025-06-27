@@ -1,6 +1,6 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-import { useMainLayout } from '../layouts/MainLayout'
+import { useMainLayout } from '../hooks/useMainLayout'
 // eslint-disable-next-line no-unused-vars
 import { AnimatePresence, motion } from 'motion/react'
 
