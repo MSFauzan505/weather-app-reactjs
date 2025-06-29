@@ -15,7 +15,6 @@ const AppRoutes = () => {
                 <Route element={<MainLayoutProvider/>}>
                     <Route index element={<HomePage />} />
                     <Route path='/about' element={<AboutPage />} />
-                    <Route path='/city/:cityName' element={<CityDetailPage />} />
                     <Route path='/forecast' element={<ForecastPage />} />
                     <Route path='/search' element={<SearchPage />} />
 

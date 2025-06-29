@@ -7,7 +7,6 @@ import { AnimatePresence, motion } from 'motion/react'
 const navItems = [
   { to: '/', icon: 'pi pi-home' },
   { to: '/search', icon: 'pi pi-search' },
-  { to: '/city/jakarta', icon: 'pi pi-building' },
   { to: '/forecast', icon: 'pi pi-chart-scatter' },
 ]
 
