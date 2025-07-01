@@ -23,7 +23,7 @@ export const MainLayoutProvider = () => {
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, ease: 'easeOut' }}
-                        className=' sm:mt-2 sm:m-0 w-full p-4 sm:p-3'>
+                        className=' sm:m-0 w-full p-4 sm:p-3'>
                         <div className='my-2 sm:my-5 flex justify-end gap-5'>
                             <a href='https://github.com/MSFauzan505' target='_black' className='text-white hover:text-gray-100 hover:underline'>Github</a>
                             <a href='https://openweathermap.org' target='_black' className='text-white hover:text-gray-100 hover:underline'>Weather API</a>

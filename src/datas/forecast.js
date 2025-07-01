@@ -40,42 +40,6 @@
         },
         dt_txt: "2025-06-25 03:00:00",
       },
-      {
-        dt: 1751241600,
-        main: {
-          temp: 22.07,
-          feels_like: 22.79,
-          temp_min: 22.07,
-          temp_max: 22.07,
-          pressure: 1010,
-          sea_level: 1010,
-          grnd_level: 988,
-          humidity: 94,
-          temp_kf: 0,
-        },
-        weather: [
-          {
-            id: 804,
-            main: "Clouds",
-            description: "overcast clouds",
-            icon: "04d",
-          },
-        ],
-        clouds: {
-          all: 98,
-        },
-        wind: {
-          speed: 1.67,
-          deg: 170,
-          gust: 1.8,
-        },
-        visibility: 10000,
-        pop: 0,
-        sys: {
-          pod: "d",
-        },
-        dt_txt: "2025-06-30 00:00:00",
-      },
     ],
     city: {
       id: 1626998,
