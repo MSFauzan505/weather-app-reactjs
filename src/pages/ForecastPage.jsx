@@ -61,9 +61,23 @@ const ForecastPage = () => {
           </div>
         </div>
 
-        <Card className={`${cardStyle} flex h-[400px] md:flex-1`}>
-          dfsafasf
+        <Card className={`${cardStyle} flex flex-col justify-between h-[400px] md:flex-1 p-4`}>
+          <h1 className="text-base sm:text-lg md:text-xl font-semibold text-white">Current Weather</h1>
+          <div className="flex flex-col items-center justify-between py-8 flex-1 gap-4 h-[300px] mt-3">
+            <img
+              src="/icon-cerah.png"
+              alt="weather icon"
+              className="w-28 h-28 sm:w-36 sm:h-36 object-contain"
+            />
+            <h1 className='text-2xl md:text-4xl font-bold'>Clear</h1>
+            <div className="flex gap-3 flex-wrap justify-center text-sm sm:text-base text-white">
+              <span>🌡️ 24°C</span>
+              <span>💧 92% RH</span>
+              <span>💨 6 km/h</span>
+            </div>
+          </div>
         </Card>
+
       </div>
 
       <Card className={`${cardStyle} h-[300px] w-full overflow-x-auto  max-w-full`}>
