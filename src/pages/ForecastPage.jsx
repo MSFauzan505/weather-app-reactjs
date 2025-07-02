@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Card } from 'primereact/card';
 import { CiTempHigh } from "react-icons/ci";
 import { SiMattermost } from "react-icons/si";
@@ -7,6 +7,7 @@ import { FaCloudRain } from "react-icons/fa";
 import { useMainLayout } from '../hooks/useMainLayout';
 import { BiWind } from "react-icons/bi";
 import ForecastChart from '../components/ForecastChart';
+import LocationGeo from '../components/LocationGeo';
 
 const cardStyle = 'text-white bg-black/20 backdrop-blur-2xl rounded-xl p-5'
 
@@ -35,6 +36,7 @@ const rainForecastData = [
 
 
 const ForecastPage = () => {
+  const [position, setPosition] = useState({ lat: null, lon: null })
 
   const { setTitlePage } = useMainLayout()
 
@@ -42,11 +44,12 @@ const ForecastPage = () => {
     setTitlePage('Weather per day')
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+  
 
 
   return (
     <div className="flex flex-col gap-2 sm:gap-3 md:gap-4">
-
+      <LocationGeo position={position} setPosition={setPosition} />
       <div className='flex flex-col md:flex-row gap-2 w-full'>
         {/* air condition */}
         <div className='flex flex-col gap-2 h-[250px] sm:h-[400px]  sm:min-w-[400px] md:flex-2'>
@@ -141,9 +144,9 @@ const ForecastPage = () => {
       </Card>
 
       <div className={` ${cardStyle} flex sm:w-full flex-col md:flex-row gap-2 h-[400px]`}>
-     
-          <ForecastChart data={rainForecastData} unit="%" dataKey="probability" />
-  
+
+        <ForecastChart data={rainForecastData} unit="%" dataKey="probability" />
+
       </div>
 
     </div>

@@ -35,7 +35,7 @@ const mockPopularCities = [
 
 const HomePage = () => {
     const [currentWeather, setCurrentWeather] = useState()
-    const [forecastWeather, setForecastWeather] = useState(null)
+    const [forecastWeather, setForecastWeather] = useState()
     const [popularCities, setPopularCities] = useState([])
 
     const [visibleMapDialog, setVisibleMapDialog] = useState(false);
@@ -48,12 +48,22 @@ const HomePage = () => {
         // fetch city current weather
 
         const defaultCurrentWeather = async () => {
-            const data = await fetchCurrentWeather(-6.2000, 106.8167)
-            setCurrentWeather(data)
+            try {
+                const data = await fetchCurrentWeather({ lat: -6.2000, lon: 106.8167 })
+                setCurrentWeather(data)
+            } catch (err) {
+                console.log(err.message)
+            }
+
         }
         const defaultForecastWeather = async () => {
-            const data = await fetchForecast(-6.2000, 106.8167)
-            setForecastWeather(data)
+            try {
+                const data = await fetchForecast({ lat: -6.2000, lon: 106.8167 })
+                setForecastWeather(data)
+            } catch (err) {
+                console.log(err.message)
+            }
+
         }
 
         const fetchAllPopularCities = async () => {
@@ -86,8 +96,8 @@ const HomePage = () => {
 
     // handle location selected get coordinate
     const handleLocationSelected = async ({ lat, lon }) => {
-        const currentData = await fetchCurrentWeather(lat, lon)
-        const forecastData = await fetchForecast(lat, lon)
+        const currentData = await fetchCurrentWeather({ lat, lon })
+        const forecastData = await fetchForecast({ lat, lon })
         setCurrentWeather(currentData)
         setForecastWeather(forecastData)
     }
@@ -104,7 +114,7 @@ const HomePage = () => {
         }));
     }, [forecastWeather]);
 
-    
+
     // format timezone
     let formattedTime = '-';
 
@@ -147,7 +157,7 @@ const HomePage = () => {
                     <div className='flex items-center justify-center gap-4 my-8  '>
                         {currentWeather?.weather?.[0]?.icon && (
                             <img
-                                src={`https://openweathermap.org/img/wn/${currentWeather.weather[0].icon}@2x.png`}
+                                src={`https://openweathermap.org/img/wn/${currentWeather?.weather?.[0].icon}@2x.png`}
                                 alt="weather icon"
                                 className="w-28 h-28 sm:w-36 sm:h-36 object-contain"
                             />
@@ -262,7 +272,7 @@ const HomePage = () => {
                 <div className='flex flex-col w-full lg:min-w-[400px] lg:flex-1 text-white h-[400px] bg-black/20 backdrop-blur-2xl rounded-xl p-5'>
                     <div className='flex justify-between mb-5'>
                         <h1 className='font-semibold sm:text-lg md:text-xl'>Forecast weeks</h1>
-                        <a className='text-sm'>Today {forecastWeather?.list[0].dt_txt.split(" ")[0]}</a>
+                        <a className='text-sm'>Today {forecastWeather?.list[0].dt_txt.split(" ")[0] ?? '-'}</a>
                     </div>
 
                     <div className='flex flex-col gap-4 mt-2 scrollbar-hide  overflow-y-scroll'>
