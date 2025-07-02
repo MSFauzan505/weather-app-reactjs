@@ -5,10 +5,8 @@ import { SiMattermost } from "react-icons/si";
 import { WiHumidity } from "react-icons/wi";
 import { FaCloudRain } from "react-icons/fa";
 import { useMainLayout } from '../hooks/useMainLayout';
-import { LuWaves } from "react-icons/lu";
-import { IoWaterOutline } from "react-icons/io5";
 import { BiWind } from "react-icons/bi";
-import { WiDaySunny } from "react-icons/wi";
+import ForecastChart from '../components/ForecastChart';
 
 const cardStyle = 'text-white bg-black/20 backdrop-blur-2xl rounded-xl p-5'
 
@@ -23,13 +21,25 @@ const forecastData = [
   { time: "21.00", icon: "/icon-cerah.png", temp: "22°C" },
 ];
 
+const rainForecastData = [
+  { time: "06:00", probability: 10 },
+  { time: "09:00", probability: 20 },
+  { time: "12:00", probability: 50 },
+  { time: "15:00", probability: 70 },
+  { time: "18:00", probability: 40 },
+  { time: "21:00", probability: 30 },
+  { time: "00:00", probability: 20 },
+  { time: "03:00", probability: 15 }
+];
+
+
 
 const ForecastPage = () => {
 
   const { setTitlePage } = useMainLayout()
 
   useEffect(() => {
-    setTitlePage('Weather a day')
+    setTitlePage('Weather per day')
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -114,7 +124,8 @@ const ForecastPage = () => {
 
       </div>
 
-      <Card className={`${cardStyle} h-[300px] w-full overflow-x-auto  max-w-full`}>
+      <Card className={`${cardStyle} h-[320px] w-full overflow-x-auto  max-w-full`}>
+        <h1 className='py-1 sm:text-lg font-semibold'>Temprature per 3 hours</h1>
         <div className='flex justify-between sm:justify-start flex-nowrap sm:flex-wrap items-center gap-2 md:gap-3 px-2'>
           {forecastData.map((item, index) => (
             <div
@@ -130,9 +141,10 @@ const ForecastPage = () => {
       </Card>
 
       <div className='flex flex-col md:flex-row gap-2 h-[400px]'>
-        <Card className={`${cardStyle} flex-2`}>
+        <div className={`${cardStyle}h-[400px] flex-2 sm:w-full`}>
+          <ForecastChart data={rainForecastData} unit="%" dataKey="probability" />
+        </div>
 
-        </Card>
         <Card className={`${cardStyle} flex-1`}>
 
         </Card>

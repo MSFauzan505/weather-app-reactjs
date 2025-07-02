@@ -2,6 +2,10 @@ import React from 'react'
 import { Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
 
 const ForecastChart = ({ data, unit, dataKey }) => {
+ if (!data || data.length === 0) {
+    return <p className="text-white text-center">No data available</p>;
+  }
+  
   return (
     <ResponsiveContainer>
       <LineChart data={data}>
