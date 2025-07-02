@@ -1,4 +1,4 @@
-
+![Screenshot 2025-07-02 202029](https://github.com/user-attachments/assets/79dba49d-3865-43b2-a857-b68b37b36265)
 ````markdown
 # 🌦️ LiquidGlass Weather App
 
@@ -29,6 +29,9 @@ A beautifully designed weather application built with **React.js**, inspired by 
 | Home Page | Search City | Forecast View |
 |-----------|-------------|---------------|
 | ![Home](./screenshots/home.png) | ![Search](./screenshots/search.png) | ![Forecast](./screenshots/forecast.png) |
+
+
+
 
 ## ⚙️ Tech Stack
 
