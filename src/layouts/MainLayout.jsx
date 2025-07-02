@@ -26,8 +26,8 @@ export const MainLayoutProvider = () => {
                         transition={{ duration: 0.5, ease: 'easeOut' }}
                         className=' sm:m-0 w-full p-4 sm:p-3'>
                         <div className='my-2 sm:my-5 flex items-center justify-between gap-5'>
-                            <h1 className='text-white text-2xl md:text-3xl font-bold py-2'>{titlePage}</h1>
-                            <div className='flex gap-3'>
+                            <h1 className='text-white text-xl sm:text-2xl md:text-3xl font-bold py-2'>{titlePage}</h1>
+                            <div className='flex gap-3 text-sm sm:text-lg'>
                                 <a href='https://github.com/MSFauzan505' target='_black' className='text-white hover:text-gray-100 hover:underline'>Github</a>
                                 <a href='https://openweathermap.org' target='_black' className='text-white hover:text-gray-100 hover:underline'>Weather API</a>
                             </div>
