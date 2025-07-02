@@ -140,14 +140,10 @@ const ForecastPage = () => {
         </div>
       </Card>
 
-      <div className='flex flex-col md:flex-row gap-2 h-[400px]'>
-        <div className={`${cardStyle}h-[400px] flex-2 sm:w-full`}>
+      <div className={` ${cardStyle} flex sm:w-full flex-col md:flex-row gap-2 h-[400px]`}>
+     
           <ForecastChart data={rainForecastData} unit="%" dataKey="probability" />
-        </div>
-
-        <Card className={`${cardStyle} flex-1`}>
-
-        </Card>
+  
       </div>
 
     </div>
