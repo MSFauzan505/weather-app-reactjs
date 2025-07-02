@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import { fetchCurrentWeather } from '../services/weatherService'
+import { fetchCurrentWeather, fetchForecast } from '../services/weatherService'
 
-const LocationGeo = ({ position, setPosition }) => {
+const LocationGeo = ({ position, setPosition,currentWeather, setCurrentWeather, setForecast }) => {
     const [error, setError] = useState(null)
-    const [currentWeather, setCurrentWeather] = useState([])
 
     // Ambil posisi geografis
     useEffect(() => {
@@ -26,13 +25,23 @@ const LocationGeo = ({ position, setPosition }) => {
 
     // Fetch data cuaca setelah position berubah
     useEffect(() => {
-        const fetchLocationWeather = async () => {
+        const fetchLocationCurrent = async () => {
             if (position.lat && position.lon) {
                 const data = await fetchCurrentWeather(position);
                 setCurrentWeather(data);
             }
         };
-        fetchLocationWeather();
+
+        const fetchLocationForecast = async ()=>{
+            if(position.lat && position.lon){
+                const data = await fetchForecast(position)
+                setForecast(data)
+            }
+        }
+
+        fetchLocationForecast()
+        fetchLocationCurrent()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [position]);
 
     return (
@@ -45,7 +54,7 @@ const LocationGeo = ({ position, setPosition }) => {
                     <h2 className="text-lg font-bold">location: </h2>
                     <div>
                         <span>{currentWeather.name}</span>
-                        <span></span>
+                        
                     </div>
                 </div>
 
