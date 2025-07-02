@@ -5,6 +5,10 @@ import { SiMattermost } from "react-icons/si";
 import { WiHumidity } from "react-icons/wi";
 import { FaCloudRain } from "react-icons/fa";
 import { useMainLayout } from '../hooks/useMainLayout';
+import { LuWaves } from "react-icons/lu";
+import { IoWaterOutline } from "react-icons/io5";
+import { BiWind } from "react-icons/bi";
+import { WiDaySunny } from "react-icons/wi";
 
 const cardStyle = 'text-white bg-black/20 backdrop-blur-2xl rounded-xl p-5'
 
@@ -21,19 +25,20 @@ const forecastData = [
 
 
 const ForecastPage = () => {
-  
-      const {setTitlePage} = useMainLayout()
-  
-      useEffect(()=>{
-          setTitlePage('Weather a day')
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-      }, [])
-  
-  
+
+  const { setTitlePage } = useMainLayout()
+
+  useEffect(() => {
+    setTitlePage('Weather a day')
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+
   return (
     <div className="flex flex-col gap-2 sm:gap-3 md:gap-4">
 
       <div className='flex flex-col md:flex-row gap-2 w-full'>
+        {/* air condition */}
         <div className='flex flex-col gap-2 h-[250px] sm:h-[400px]  sm:min-w-[400px] md:flex-2'>
           <div className='flex gap-2 h-full '>
             <Card className={`${cardStyle}  w-full `}>
@@ -71,22 +76,41 @@ const ForecastPage = () => {
           </div>
         </div>
 
-        <Card className={`${cardStyle} flex flex-col justify-between h-[400px] md:flex-1 p-4`}>
-          <h1 className="text-base sm:text-lg md:text-xl font-semibold text-white">Current Weather</h1>
-          <div className="flex flex-col items-center justify-between py-8 flex-1 gap-4 h-[300px] mt-3">
+        {/* current weather */}
+        <Card className={`${cardStyle} flex flex-col  h-[400px] md:flex-1 p-4`}>
+          <h1 className="text-base sm:text-lg md:text-xl font-semibold text-white mb-2">
+            Current Weather
+          </h1>
+
+          <div className="flex flex-col items-center justify-center mt-14 flex-1 gap-4 text-white">
             <img
               src="/icon-cerah.png"
               alt="weather icon"
-              className="w-28 h-28 sm:w-36 sm:h-36 object-contain"
+              className="w-24 h-24 sm:w-32 sm:h-32 object-contain"
             />
-            <h1 className='text-2xl md:text-4xl font-bold'>Clear</h1>
-            <div className="flex gap-3 flex-wrap justify-center text-sm sm:text-base text-white">
-              <span>🌡️ 24°C</span>
-              <span>💧 92% RH</span>
-              <span>💨 6 km/h</span>
+
+            <div className="text-center">
+              <h2 className="text-lg sm:text-2xl md:text-3xl font-bold">Clear</h2>
+              <p className="text-sm sm:text-base text-gray-300">Wednesday, 26 Jun</p>
+            </div>
+
+            <div className="flex gap-4 flex-wrap justify-center items-center text-sm sm:text-base">
+              <div className="flex items-center gap-1">
+                <CiTempHigh className="text-xl" />
+                <span>24°C</span>
+              </div>
+              <div className="flex items-center gap-1">
+                <WiHumidity className="text-2xl" />
+                <span>92%</span>
+              </div>
+              <div className="flex items-center gap-1">
+                <BiWind className="text-xl" />
+                <span>6 km/h</span>
+              </div>
             </div>
           </div>
         </Card>
+
 
       </div>
 
