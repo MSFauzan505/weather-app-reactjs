@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { LuWaves } from "react-icons/lu";
 import { IoWaterOutline } from "react-icons/io5";
 import { BiWind } from "react-icons/bi";
@@ -9,6 +9,7 @@ import { CiCloudDrizzle } from "react-icons/ci";
 import ForecastChart from '../components/ForecastChart';
 import { Button } from 'primereact/button';
 import { Dialog } from 'primereact/dialog'
+import { useMainLayout } from '../hooks/useMainLayout';
 
 
 
@@ -48,6 +49,13 @@ const HomePage = () => {
 
     const [visibleMapDialog, setVisibleMapDialog] = useState(false);
     const [visibleCityDialog, setVisibleCityDialog] = useState(false);
+
+    const {setTitlePage} = useMainLayout()
+
+    useEffect(()=>{
+        setTitlePage('Home')
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
 
 

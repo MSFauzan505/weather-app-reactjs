@@ -1,10 +1,20 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
+import { useMainLayout } from '../hooks/useMainLayout';
 
 
 const SearchPage = () => {
   const [value, setValue] = useState('')
+  
+      const {setTitlePage} = useMainLayout()
+  
+      useEffect(()=>{
+          setTitlePage('Search City')
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      }, [])
+  
+  
   return (
     <div className='flex flex-col md:justify-baseline md:h-[700px] gap-2 sm:gap-4 md:gap-8'>
       {/* input search */}

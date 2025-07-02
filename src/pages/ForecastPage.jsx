@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Card } from 'primereact/card';
 import { CiTempHigh } from "react-icons/ci";
 import { SiMattermost } from "react-icons/si";
 import { WiHumidity } from "react-icons/wi";
 import { FaCloudRain } from "react-icons/fa";
+import { useMainLayout } from '../hooks/useMainLayout';
 
 const cardStyle = 'text-white bg-black/20 backdrop-blur-2xl rounded-xl p-5'
 
@@ -20,6 +21,15 @@ const forecastData = [
 
 
 const ForecastPage = () => {
+  
+      const {setTitlePage} = useMainLayout()
+  
+      useEffect(()=>{
+          setTitlePage('Weather a day')
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      }, [])
+  
+  
   return (
     <div className="flex flex-col gap-2 sm:gap-3 md:gap-4">
 
