@@ -209,7 +209,7 @@ const HomePage = () => {
 
                 {/* chart */}
                 <div className=' h-[400px] sm:w-full bg-black/20 backdrop-blur-2xl rounded-xl p-2'>
-                    <ForecastChart data={chartData} />
+                    <ForecastChart data={chartData} unit={'°C'} dataKey={'temp'} />
                 </div>
             </div>
         </div>
