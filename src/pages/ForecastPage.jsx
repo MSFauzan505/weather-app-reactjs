@@ -1,5 +1,9 @@
 import React from 'react'
 import { Card } from 'primereact/card';
+import { CiTempHigh } from "react-icons/ci";
+import { SiMattermost } from "react-icons/si";
+import { WiHumidity } from "react-icons/wi";
+import { FaCloudRain } from "react-icons/fa";
 
 const cardStyle = 'text-white bg-black/20 backdrop-blur-2xl rounded-xl p-5'
 
@@ -20,23 +24,39 @@ const ForecastPage = () => {
     <div className="flex flex-col gap-2 sm:gap-3 md:gap-4">
 
       <div className='flex flex-col md:flex-row gap-2 w-full'>
-        <div className='flex flex-col gap-2 h-[200px] sm:h-[400px]  sm:min-w-[400px] md:flex-2'>
+        <div className='flex flex-col gap-2 h-[250px] sm:h-[400px]  sm:min-w-[400px] md:flex-2'>
           <div className='flex gap-2 h-full '>
-            <Card className={`${cardStyle}  w-full`}>
-              dasdasd
+            <Card className={`${cardStyle}  w-full `}>
+              <h1 className='text-sm md:text-lg font-semibold'>Wind Speed</h1>
+              <div className='flex items-center justify-center gap-2  w-full py-1 sm:py-2 md:py-4 '>
+                <span className='text-sm sm:text-lg md:text-2xl '>0.57 m/s</span>
+                <CiTempHigh className='text-4xl my-2' />
+              </div>
             </Card>
 
             <Card className={`${cardStyle}  w-full`}>
-              fsaf
+              <h1 className='text-sm md:text-lg font-semibold'>Pressure</h1>
+              <div className='flex items-center justify-center gap-2 w-full py-1 sm:py-2 md:py-4 '>
+                <span className='text-sm sm:text-lg md:text-2xl'>1023 hPa</span>
+                <SiMattermost className='text-4xl my-2' />
+              </div>
             </Card>
           </div>
           <div className='flex gap-2 h-full'>
             <Card className={`${cardStyle}  w-full`}>
-              fsaf
+              <h1 className='text-sm md:text-lg font-semibold'>Rain</h1>
+              <div className='flex items-center justify-center gap-2 w-full py-1 sm:py-2 md:py-4 '>
+                <span className='text-sm sm:text-lg md:text-2xl '>68%</span>
+                <WiHumidity className='text-4xl my-2' />
+              </div>
             </Card>
 
             <Card className={`${cardStyle}  w-full`}>
-              fasfas
+              <h1 className='text-sm md:text-lg font-semibold'>Pressure</h1>
+              <div className='flex items-center justify-center gap-2 w-full py-1 sm:py-2 md:py-4 '>
+                <span className='text-sm sm:text-lg md:text-2xl'>30%</span>
+                <FaCloudRain className='text-4xl my-2' />
+              </div>
             </Card>
           </div>
         </div>
